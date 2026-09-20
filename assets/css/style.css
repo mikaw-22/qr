@@ -184,6 +184,23 @@ input::placeholder {
     text-align: center;
 }
 
+.settings-toggle {
+    /* ... */
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    right: calc(24px + env(safe-area-inset-right, 0px));
+}
+
+.sidebar {
+    /* ... */
+    bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+    right: calc(24px + env(safe-area-inset-right, 0px));
+}
+
+.toast {
+    /* ... */
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+}
+
 .main-cont {
     flex: 1;
     min-height: 100vh;
@@ -192,6 +209,7 @@ input::placeholder {
     align-items: center;
     flex-direction: column;
     gap: 20px;
+    padding: 40px 20px calc(100px + env(safe-area-inset-bottom, 0px)) 20px;
 }
 
 p {
@@ -348,5 +366,102 @@ p {
         order: 1;
         min-height: auto;
         padding-top: 50px;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .side-and-main {
+        flex-direction: column;
+        min-height: auto;
+    }
+    .sidebar {
+        width: 100%;
+        order: 2;
+        padding: 20px;
+    }
+    .main-cont {
+        order: 1;
+        min-height: auto;
+        padding-top: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .link-input {
+        font-size: 18px;
+        padding: 10px 12px;
+    }
+
+    .qr-stage {
+        padding: 20px;
+    }
+
+    .actions {
+        width: 100%;
+    }
+
+    .action-btn {
+        flex: 1 1 auto;
+        justify-content: center;
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+
+    .sidebar {
+        left: auto;
+        right: 12px;
+        width: min(78vw, 250px);
+        bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .sidebar-standalone {
+        width: 100%;
+        max-width: none;
+        max-height: 70vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 14px;
+        font-size: 12px;
+    }
+
+    .inner-optionen {
+        margin-top: 10px;
+        gap: 8px;
+    }
+
+    .inner-optionen span {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 13px;
+    }
+
+    .sidebar input[type="text"] {
+        width: 1.2cm;
+        padding: 6px;
+        font-size: 12px;
+        flex-shrink: 0;
+    }
+
+    .sidebar input[type="color"] {
+        width: 1.2cm;
+        height: 26px;
+        flex-shrink: 0;
+    }
+
+    .reset-btn {
+        margin-top: 10px;
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+
+    .settings-toggle {
+        width: 48px;
+        height: 48px;
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        right: calc(12px + env(safe-area-inset-right, 0px));
     }
 }
