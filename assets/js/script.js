@@ -14,6 +14,7 @@
   const qrResult = document.getElementById('qr-result');
   const copyQrBtn = document.getElementById('copy-qr-btn');
   const settingsToggle = document.getElementById('settings-toggle');
+  const testLinkBtn = document.getElementById('test-link-btn');
     const sidebar = document.querySelector('.sidebar');
 
     settingsToggle.addEventListener('click', () => {
@@ -67,6 +68,7 @@ function renderPlaceholder() {
   qrResult.classList.remove('visible');
   downloadBtn.disabled = true;
   copyQrBtn.disabled = true;
+  testLinkBtn.disabled = true;
 }
 
 function renderQr() {
@@ -105,6 +107,7 @@ function renderQr() {
         lastQrSourceEl = el;
         downloadBtn.disabled = false;
         copyQrBtn.disabled = false;
+        testLinkBtn.disabled = false;
       } else if (tries < 20) {
         tries++;
         requestAnimationFrame(findEl);
@@ -160,6 +163,13 @@ function renderQr() {
   });
 }
 
+testLinkBtn.addEventListener('click', () => {
+  const text = linkInput.value.trim();
+  if (!text) return;
+  const url = /^https?:\/\//i.test(text) ? text : 'https://' + text;
+  window.open(url, '_blank', 'noopener,noreferrer');
+});
+
 copyQrBtn.addEventListener('click', async () => {
   if (!lastQrSourceEl) return;
   try {
@@ -192,3 +202,5 @@ copyQrBtn.addEventListener('click', async () => {
   // Initialer Zustand: leerer QR-Code Platzhalter bei 2.2cm x 2.2cm
   renderQr();
 })();
+
+
